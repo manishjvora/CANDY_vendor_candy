@@ -143,6 +143,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Launcher3 \
     AudioFX \
+    ExactCalculator \
     LockClock
 
 # BitSyko Layers
