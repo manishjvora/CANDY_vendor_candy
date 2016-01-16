@@ -146,6 +146,10 @@ PRODUCT_PACKAGES += \
     KernelAdiutor \
     LockClock
 
+#OmniSwitch
+PRODUCT_PACKAGES += \
+    OmniSwitch
+
 # BitSyko Layers
 PRODUCT_COPY_FILES += \
     vendor/candy/prebuilt/common/app/LayersManager/LayersManager.apk:system/app/LayersManager/LayersManager.apk
