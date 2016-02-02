@@ -147,6 +147,13 @@ PRODUCT_PACKAGES += \
     KernelAdiutor \
     LockClock
 
+# Just for the Wankers
+ifeq ($(WANKER_BUILD),true)
+PRODUCT_PACKAGES += \
+    Email \
+    Exchange2
+endif
+
 #OmniSwitch
 PRODUCT_PACKAGES += \
     OmniSwitch
