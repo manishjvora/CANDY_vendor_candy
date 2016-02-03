@@ -145,7 +145,9 @@ PRODUCT_PACKAGES += \
     AudioFX \
     ExactCalculator \
     KernelAdiutor \
-    LockClock
+    LockClock \
+    Email \
+    Exchange2
 
 #OmniSwitch
 PRODUCT_PACKAGES += \
