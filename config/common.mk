@@ -114,18 +114,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     OmniSwitch
 
-# BitSyko Layers
-PRODUCT_COPY_FILES += \
-    vendor/candy/prebuilt/common/app/LayersManager/LayersManager.apk:system/app/LayersManager/LayersManager.apk
-
-# Layers Backup
-PRODUCT_COPY_FILES += \
-    vendor/candy/prebuilt/common/addon.d/71-layers.sh:system/addon.d/71-layers.sh
-
-# Hide BitSyko Layers Manager app icon from launcher
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.layers.noIcon=noIcon
-
+# Extra tools
 PRODUCT_PACKAGES += \
     openvpn \
     e2fsck \
@@ -188,6 +177,9 @@ PRODUCT_COPY_FILES += \
     vendor/candy/prebuilt/common/bootanimation/$(TARGET_BOOTANIMATION_NAME).zip:system/media/bootanimation.zip
 endif
 endif
+
+# Themes
+include vendor/candy/config/themes_common.mk
 
 # Versioning System
 PRODUCT_VERSION_MAJOR = 6.0.1
