@@ -113,9 +113,9 @@ PRODUCT_PACKAGES += \
     LatinIME \
     BluetoothExt
 
-# Custom Candy packages
-PRODUCT_PACKAGES += \
-    KernelAdiutor
+# Kernel Adiutor
+PRODUCT_COPY_FILES += \
+    vendor/candy/prebuilt/common/app/KernelAdiutor/KernelAdiutor.apk:system/app/KernelAdiutor/KernelAdiutor.apk
 
 #OmniSwitch
 PRODUCT_PACKAGES += \
