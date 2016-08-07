@@ -111,6 +111,7 @@ PRODUCT_PACKAGES += \
     BluetoothExt
 
 # Kernel Adiutor
+PRODUCT_COPY_FILES += \
     vendor/candy/prebuilt/common/app/KernelAdiutor/KernelAdiutor.apk:system/app/KernelAdiutor/KernelAdiutor.apk
 
 # Masquerade
