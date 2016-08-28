@@ -1,7 +1,7 @@
 # -*- mode: sh; -*-
 
-declare -A CMD_HANDLERS
-CMD_HANDLERS=(
+declare -A TurboD_HANDLERS
+TurboD_HANDLERS=(
     ["init"]=_repo_init
     ["help"]=_repo_help
     ["abandon"]=_repo_abandon
@@ -95,19 +95,19 @@ _no_completion() {
 }
 
 _command_completion() {
-    local cmds
+    local turbods
 
     if _is_repo_dir
     then
-        cmds=("abandon" "branch" "branches" "checkout" "cherry-pick" "diff"
+        turbods=("abandon" "branch" "branches" "checkout" "cherry-pick" "diff"
             "download" "forall" "grep" "help" "init" "list" "prune" "rebase"
             "selfupdate" "smartsync" "stage" "start" "status" "sync"
             "upload" "version")
     else
-        cmds=("help" "init")
+        turbods=("help" "init")
     fi
 
-    _gen_comps "${cmds[*]}"
+    _gen_comps "${turbods[*]}"
 }
 
 _branch_completion() {
@@ -160,7 +160,7 @@ _manifest_completion() {
     fi
 }
 
-_path_cmd_completion() {
+_path_turbod_completion() {
     _gen_comps "$(compgen -c ${cur})"
 }
 
@@ -295,7 +295,7 @@ _when_even() {
     fi
 }
 
-_cmp_opts() {
+_turbop_opts() {
     local opt="$1"
     local word="$2"
 
@@ -319,7 +319,7 @@ _before() {
     do
         for needle in "$@"
         do
-            if _cmp_opts "${needle}" "${word}"
+            if _turbop_opts "${needle}" "${word}"
             then
                 return 1
             fi
@@ -442,8 +442,8 @@ _repo_forall() {
     )
 
     ARG_OPTIONS=(
-        ["-c"]=_path_cmd_completion
-        ["--command"]=_path_cmd_completion
+        ["-c"]=_path_turbod_completion
+        ["--command"]=_path_turbod_completion
     )
 
     _handle_options || _before _project_completion -c --command || _filedir
@@ -641,8 +641,8 @@ _repo() {
     then
         _command_completion
     else
-        local cmd=${COMP_WORDS[1]}
-        local handler=${CMD_HANDLERS["${cmd}"]}
+        local turbod=${COMP_WORDS[1]}
+        local handler=${TurboD_HANDLERS["${turbod}"]}
         if [ -n ${handler} ]
         then
             eval ${handler}

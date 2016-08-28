@@ -1,4 +1,4 @@
-PRODUCT_BRAND ?= cyanogenmod
+PRODUCT_BRAND ?= turbo
 
 ifneq ($(TARGET_SCREEN_WIDTH) $(TARGET_SCREEN_HEIGHT),$(space))
 # determine the smaller dimension
@@ -10,7 +10,7 @@ TARGET_BOOTANIMATION_SIZE := $(shell \
   fi )
 
 # get a sorted list of the sizes
-bootanimation_sizes := $(subst .zip,, $(shell ls vendor/cm/prebuilt/common/bootanimation))
+bootanimation_sizes := $(subst .zip,, $(shell ls vendor/turbo/prebuilt/common/bootanimation))
 bootanimation_sizes := $(shell echo -e $(subst $(space),'\n',$(bootanimation_sizes)) | sort -rn)
 
 # find the appropriate size and set
@@ -27,18 +27,10 @@ endef
 $(foreach size,$(bootanimation_sizes), $(call check_and_set_bootanimation,$(size)))
 
 ifeq ($(TARGET_BOOTANIMATION_HALF_RES),true)
-PRODUCT_BOOTANIMATION := vendor/cm/prebuilt/common/bootanimation/halfres/$(TARGET_BOOTANIMATION_NAME).zip
+PRODUCT_BOOTANIMATION := vendor/turbo/prebuilt/common/bootanimation/halfres/$(TARGET_BOOTANIMATION_NAME).zip
 else
-PRODUCT_BOOTANIMATION := vendor/cm/prebuilt/common/bootanimation/$(TARGET_BOOTANIMATION_NAME).zip
+PRODUCT_BOOTANIMATION := vendor/turbo/prebuilt/common/bootanimation/$(TARGET_BOOTANIMATION_NAME).zip
 endif
-endif
-
-ifdef CM_NIGHTLY
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.rommanager.developerid=cyanogenmodnightly
-else
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.rommanager.developerid=cyanogenmod
 endif
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
@@ -73,43 +65,39 @@ ifneq ($(TARGET_BUILD_VARIANT),eng)
 ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=1
 endif
 
-# Copy over the changelog to the device
-PRODUCT_COPY_FILES += \
-    vendor/cm/CHANGELOG.mkdn:system/etc/CHANGELOG-CM.txt
-
 # Backup Tool
 PRODUCT_COPY_FILES += \
-    vendor/cm/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
-    vendor/cm/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/cm/prebuilt/common/bin/50-cm.sh:system/addon.d/50-cm.sh \
-    vendor/cm/prebuilt/common/bin/blacklist:system/addon.d/blacklist
+    vendor/turbo/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+    vendor/turbo/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
+    vendor/turbo/prebuilt/common/bin/50-turbo.sh:system/addon.d/50-turbo.sh \
+    vendor/turbo/prebuilt/common/bin/blacklist:system/addon.d/blacklist
 
 # Backup Services whitelist
 PRODUCT_COPY_FILES += \
-    vendor/cm/config/permissions/backup.xml:system/etc/sysconfig/backup.xml
+    vendor/turbo/config/permissions/backup.xml:system/etc/sysconfig/backup.xml
 
 # Signature compatibility validation
 PRODUCT_COPY_FILES += \
-    vendor/cm/prebuilt/common/bin/otasigcheck.sh:install/bin/otasigcheck.sh
+    vendor/turbo/prebuilt/common/bin/otasigcheck.sh:install/bin/otasigcheck.sh
 
 # init.d support
 PRODUCT_COPY_FILES += \
-    vendor/cm/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
-    vendor/cm/prebuilt/common/bin/sysinit:system/bin/sysinit
+    vendor/turbo/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
+    vendor/turbo/prebuilt/common/bin/sysinit:system/bin/sysinit
 
 ifneq ($(TARGET_BUILD_VARIANT),user)
 # userinit support
 PRODUCT_COPY_FILES += \
-    vendor/cm/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
+    vendor/turbo/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
 endif
 
-# CM-specific init file
+# Turbo-specific init file
 PRODUCT_COPY_FILES += \
-    vendor/cm/prebuilt/common/etc/init.local.rc:root/init.cm.rc
+    vendor/turbo/prebuilt/common/etc/init.local.rc:root/init.turbo.rc
 
 # Copy over added mimetype supported in libcore.net.MimeUtils
 PRODUCT_COPY_FILES += \
-    vendor/cm/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
+    vendor/turbo/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -119,28 +107,12 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/base/data/keyboards/Vendor_045e_Product_028e.kl:system/usr/keylayout/Vendor_045e_Product_0719.kl
 
-# This is CM!
-PRODUCT_COPY_FILES += \
-    vendor/cm/config/permissions/com.cyanogenmod.android.xml:system/etc/permissions/com.cyanogenmod.android.xml
-
-# Theme engine
-include vendor/cm/config/themes_common.mk
-
-ifneq ($(TARGET_DISABLE_CMSDK), true)
-# CMSDK
-include vendor/cm/config/cmsdk_common.mk
-endif
-
-# Required CM packages
+# Required Turbo packages
 PRODUCT_PACKAGES += \
-    CMAudioService \
     Development \
-    BluetoothExt \
-    Profiles \
-    ThemeManagerService \
-    WeatherManagerService
+    BluetoothExt
 
-# Optional CM packages
+# Optional Turbo packages
 PRODUCT_PACKAGES += \
     libemoji \
     Terminal
@@ -149,29 +121,17 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     librsjni
 
-# Custom CM packages
+# Custom Turbo packages
 PRODUCT_PACKAGES += \
     Launcher3 \
-    Trebuchet \
-    AudioFX \
-    CMWallpapers \
-    CMFileManager \
-    Eleven \
-    LockClock \
-    CMUpdater \
-    CyanogenSetupWizard \
-    CMSettingsProvider \
     ExactCalculator \
-    LiveLockScreenService \
-    WeatherProvider \
-    DataUsageProvider \
     WallpaperPicker
 
 # Exchange support
 PRODUCT_PACKAGES += \
     Exchange2
 
-# Extra tools in CM
+# Extra tools in Turbo
 PRODUCT_PACKAGES += \
     libsepol \
     mke2fs \
@@ -186,16 +146,8 @@ PRODUCT_PACKAGES += \
     oprofiled \
     sqlite3 \
     strace \
-    pigz
-
-# Custom off-mode charger
-ifneq ($(WITH_CM_CHARGER),false)
-PRODUCT_PACKAGES += \
-    charger_res_images \
-    cm_charger_res_images \
-    font_log.png \
-    libhealthd.cm
-endif
+    pigz \
+    su
 
 # ExFAT support
 WITH_EXFAT ?= true
@@ -235,133 +187,129 @@ PRODUCT_PROPERTY_OVERRIDES += \
 ifneq ($(TARGET_BUILD_VARIANT),user)
 PRODUCT_PACKAGES += \
     procmem \
-    procrank \
-    su
+    procrank
 endif
 
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.root_access=0
 
-DEVICE_PACKAGE_OVERLAYS += vendor/cm/overlay/common
+DEVICE_PACKAGE_OVERLAYS += vendor/turbo/overlay/common
 
-PRODUCT_VERSION_MAJOR = 14
+PRODUCT_VERSION_MAJOR = 6
 PRODUCT_VERSION_MINOR = 0
 PRODUCT_VERSION_MAINTENANCE := 0
 
 ifeq ($(TARGET_VENDOR_SHOW_MAINTENANCE_VERSION),true)
-    CM_VERSION_MAINTENANCE := $(PRODUCT_VERSION_MAINTENANCE)
+    TURBO_VERSION_MAINTENANCE := $(PRODUCT_VERSION_MAINTENANCE)
 else
-    CM_VERSION_MAINTENANCE := 0
+    TURBO_VERSION_MAINTENANCE := 0
 endif
 
-# Set CM_BUILDTYPE from the env RELEASE_TYPE, for jenkins compat
+# Set TURBO_BUILDTYPE from the env RELEASE_TYPE, for jenkins compat
 
-ifndef CM_BUILDTYPE
+ifndef TURBO_BUILDTYPE
     ifdef RELEASE_TYPE
-        # Starting with "CM_" is optional
-        RELEASE_TYPE := $(shell echo $(RELEASE_TYPE) | sed -e 's|^CM_||g')
-        CM_BUILDTYPE := $(RELEASE_TYPE)
+        # Starting with "TURBO_" is optional
+        RELEASE_TYPE := $(shell echo $(RELEASE_TYPE) | sed -e 's|^TURBO_||g')
+        TURBO_BUILDTYPE := $(RELEASE_TYPE)
     endif
 endif
 
 # Filter out random types, so it'll reset to UNOFFICIAL
-ifeq ($(filter RELEASE NIGHTLY SNAPSHOT EXPERIMENTAL,$(CM_BUILDTYPE)),)
-    CM_BUILDTYPE :=
+ifeq ($(filter RELEASE NIGHTLY SNAPSHOT EXPERIMENTAL,$(TURBO_BUILDTYPE)),)
+    TURBO_BUILDTYPE :=
 endif
 
-ifdef CM_BUILDTYPE
-    ifneq ($(CM_BUILDTYPE), SNAPSHOT)
-        ifdef CM_EXTRAVERSION
+ifdef TURBO_BUILDTYPE
+    ifneq ($(TURBO_BUILDTYPE), SNAPSHOT)
+        ifdef TURBO_EXTRAVERSION
             # Force build type to EXPERIMENTAL
-            CM_BUILDTYPE := EXPERIMENTAL
-            # Remove leading dash from CM_EXTRAVERSION
-            CM_EXTRAVERSION := $(shell echo $(CM_EXTRAVERSION) | sed 's/-//')
-            # Add leading dash to CM_EXTRAVERSION
-            CM_EXTRAVERSION := -$(CM_EXTRAVERSION)
+            TURBO_BUILDTYPE := EXPERIMENTAL
+            # Remove leading dash from TURBO_EXTRAVERSION
+            TURBO_EXTRAVERSION := $(shell echo $(TURBO_EXTRAVERSION) | sed 's/-//')
+            # Add leading dash to TURBO_EXTRAVERSION
+            TURBO_EXTRAVERSION := -$(TURBO_EXTRAVERSION)
         endif
     else
-        ifndef CM_EXTRAVERSION
+        ifndef TURBO_EXTRAVERSION
             # Force build type to EXPERIMENTAL, SNAPSHOT mandates a tag
-            CM_BUILDTYPE := EXPERIMENTAL
+            TURBO_BUILDTYPE := EXPERIMENTAL
         else
-            # Remove leading dash from CM_EXTRAVERSION
-            CM_EXTRAVERSION := $(shell echo $(CM_EXTRAVERSION) | sed 's/-//')
-            # Add leading dash to CM_EXTRAVERSION
-            CM_EXTRAVERSION := -$(CM_EXTRAVERSION)
+            # Remove leading dash from TURBO_EXTRAVERSION
+            TURBO_EXTRAVERSION := $(shell echo $(TURBO_EXTRAVERSION) | sed 's/-//')
+            # Add leading dash to TURBO_EXTRAVERSION
+            TURBO_EXTRAVERSION := -$(TURBO_EXTRAVERSION)
         endif
     endif
 else
-    # If CM_BUILDTYPE is not defined, set to UNOFFICIAL
-    CM_BUILDTYPE := UNOFFICIAL
-    CM_EXTRAVERSION :=
+    # If TURBO_BUILDTYPE is not defined, set to UNOFFICIAL
+    TURBO_BUILDTYPE := UNOFFICIAL
+    TURBO_EXTRAVERSION :=
 endif
 
-ifeq ($(CM_BUILDTYPE), UNOFFICIAL)
+ifeq ($(TURBO_BUILDTYPE), UNOFFICIAL)
     ifneq ($(TARGET_UNOFFICIAL_BUILD_ID),)
-        CM_EXTRAVERSION := -$(TARGET_UNOFFICIAL_BUILD_ID)
+        TURBO_EXTRAVERSION := -$(TARGET_UNOFFICIAL_BUILD_ID)
     endif
 endif
 
-ifeq ($(CM_BUILDTYPE), RELEASE)
+ifeq ($(TURBO_BUILDTYPE), RELEASE)
     ifndef TARGET_VENDOR_RELEASE_BUILD_ID
-        CM_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(CM_BUILD)
+        TURBO_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(TURBO_BUILD)
     else
         ifeq ($(TARGET_BUILD_VARIANT),user)
-            ifeq ($(CM_VERSION_MAINTENANCE),0)
-                CM_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(CM_BUILD)
+            ifeq ($(TURBO_VERSION_MAINTENANCE),0)
+                TURBO_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(TURBO_BUILD)
             else
-                CM_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(CM_VERSION_MAINTENANCE)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(CM_BUILD)
+                TURBO_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(TURBO_VERSION_MAINTENANCE)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(TURBO_BUILD)
             endif
         else
-            CM_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(CM_BUILD)
+            TURBO_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(TURBO_BUILD)
         endif
     endif
 else
-    ifeq ($(CM_VERSION_MAINTENANCE),0)
-        CM_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(shell date -u +%Y%m%d)-$(CM_BUILDTYPE)$(CM_EXTRAVERSION)-$(CM_BUILD)
+    ifeq ($(TURBO_VERSION_MAINTENANCE),0)
+        TURBO_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(shell date -u +%Y%m%d)-$(TURBO_BUILDTYPE)$(TURBO_EXTRAVERSION)-$(TURBO_BUILD)
     else
-        CM_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(CM_VERSION_MAINTENANCE)-$(shell date -u +%Y%m%d)-$(CM_BUILDTYPE)$(CM_EXTRAVERSION)-$(CM_BUILD)
+        TURBO_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(TURBO_VERSION_MAINTENANCE)-$(shell date -u +%Y%m%d)-$(TURBO_BUILDTYPE)$(TURBO_EXTRAVERSION)-$(TURBO_BUILD)
     endif
 endif
 
 PRODUCT_PROPERTY_OVERRIDES += \
-  ro.cm.version=$(CM_VERSION) \
-  ro.cm.releasetype=$(CM_BUILDTYPE) \
-  ro.modversion=$(CM_VERSION) \
-  ro.cmlegal.url=https://cyngn.com/legal/privacy-policy
+  ro.turbo.version=$(TURBO_VERSION) \
+  ro.turbo.releasetype=$(TURBO_BUILDTYPE) \
+  ro.modversion=$(TURBO_VERSION)
 
--include vendor/cm-priv/keys/keys.mk
+-include vendor/turbo-priv/keys/keys.mk
 
-CM_DISPLAY_VERSION := $(CM_VERSION)
+TURBO_DISPLAY_VERSION := $(TURBO_VERSION)
 
 ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),)
 ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),build/target/product/security/testkey)
-  ifneq ($(CM_BUILDTYPE), UNOFFICIAL)
+  ifneq ($(TURBO_BUILDTYPE), UNOFFICIAL)
     ifndef TARGET_VENDOR_RELEASE_BUILD_ID
-      ifneq ($(CM_EXTRAVERSION),)
-        # Remove leading dash from CM_EXTRAVERSION
-        CM_EXTRAVERSION := $(shell echo $(CM_EXTRAVERSION) | sed 's/-//')
-        TARGET_VENDOR_RELEASE_BUILD_ID := $(CM_EXTRAVERSION)
+      ifneq ($(TURBO_EXTRAVERSION),)
+        # Remove leading dash from TURBO_EXTRAVERSION
+        TURBO_EXTRAVERSION := $(shell echo $(TURBO_EXTRAVERSION) | sed 's/-//')
+        TARGET_VENDOR_RELEASE_BUILD_ID := $(TURBO_EXTRAVERSION)
       else
         TARGET_VENDOR_RELEASE_BUILD_ID := $(shell date -u +%Y%m%d)
       endif
     else
       TARGET_VENDOR_RELEASE_BUILD_ID := $(TARGET_VENDOR_RELEASE_BUILD_ID)
     endif
-    ifeq ($(CM_VERSION_MAINTENANCE),0)
-        CM_DISPLAY_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(CM_BUILD)
+    ifeq ($(TURBO_VERSION_MAINTENANCE),0)
+        TURBO_DISPLAY_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(TURBO_BUILD)
     else
-        CM_DISPLAY_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(CM_VERSION_MAINTENANCE)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(CM_BUILD)
+        TURBO_DISPLAY_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(TURBO_VERSION_MAINTENANCE)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(TURBO_BUILD)
     endif
 endif
 endif
 endif
 
 PRODUCT_PROPERTY_OVERRIDES += \
-  ro.cm.display.version=$(CM_DISPLAY_VERSION)
+  ro.turbo.display.version=$(TURBO_DISPLAY_VERSION)
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
-
--include vendor/cyngn/product.mk
 
 $(call prepend-product-if-exists, vendor/extra/product.mk)

@@ -1,12 +1,12 @@
-# Inherit common CM stuff
-$(call inherit-product, vendor/cm/config/common.mk)
+# Inherit common Turbo stuff
+$(call inherit-product, vendor/turbo/config/common.mk)
 
 PRODUCT_SIZE := full
 
-# Include CM audio files
-include vendor/cm/config/cm_audio.mk
+# Include Turbo audio files
+include vendor/turbo/config/turbo_audio.mk
 
-# Optional CM packages
+# Optional Turbo packages
 PRODUCT_PACKAGES += \
     Galaxy4 \
     HoloSpiralWallpaper \
@@ -17,10 +17,9 @@ PRODUCT_PACKAGES += \
     PhaseBeam \
     PhotoTable \
     SoundRecorder \
-    PhotoPhase \
-    Screencast
+    PhotoPhase
 
-# Extra tools in CM
+# Extra tools in Turbo
 PRODUCT_PACKAGES += \
     7z \
     lib7z \
@@ -33,7 +32,3 @@ PRODUCT_PACKAGES += \
     vim \
     wget \
     zip
-
-# Themes
-PRODUCT_PACKAGES += \
-    HexoLibre

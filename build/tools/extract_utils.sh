@@ -45,7 +45,7 @@ trap cleanup EXIT INT TERM ERR
 #
 # $1: device name
 # $2: vendor name
-# $3: CM root directory
+# $3: Turbo root directory
 # $4: is common device - optional, default to false
 # $5: cleanup - optional, default to true
 #
@@ -65,20 +65,20 @@ function setup_vendor() {
         exit 1
     fi
 
-    export CM_ROOT="$3"
-    if [ ! -d "$CM_ROOT" ]; then
-        echo "\$CM_ROOT must be set and valid before including this script!"
+    export TURBO_ROOT="$3"
+    if [ ! -d "$TURBO_ROOT" ]; then
+        echo "\$TURBO_ROOT must be set and valid before including this script!"
         exit 1
     fi
 
     export OUTDIR=vendor/"$VENDOR"/"$DEVICE"
-    if [ ! -d "$CM_ROOT/$OUTDIR" ]; then
-        mkdir -p "$CM_ROOT/$OUTDIR"
+    if [ ! -d "$TURBO_ROOT/$OUTDIR" ]; then
+        mkdir -p "$TURBO_ROOT/$OUTDIR"
     fi
 
-    export PRODUCTMK="$CM_ROOT"/"$OUTDIR"/"$DEVICE"-vendor.mk
-    export ANDROIDMK="$CM_ROOT"/"$OUTDIR"/Android.mk
-    export BOARDMK="$CM_ROOT"/"$OUTDIR"/BoardConfigVendor.mk
+    export PRODUCTMK="$TURBO_ROOT"/"$OUTDIR"/"$DEVICE"-vendor.mk
+    export ANDROIDMK="$TURBO_ROOT"/"$OUTDIR"/Android.mk
+    export BOARDMK="$TURBO_ROOT"/"$OUTDIR"/BoardConfigVendor.mk
 
     if [ "$4" == "true" ] || [ "$4" == "1" ]; then
         COMMON=1
@@ -624,15 +624,15 @@ function get_file() {
 # Convert apk|jar .odex in the corresposing classes.dex
 #
 function oat2dex() {
-    local CM_TARGET="$1"
+    local Turbo_TARGET="$1"
     local OEM_TARGET="$2"
     local SRC="$3"
     local TARGET=
     local OAT=
 
     if [ -z "$BAKSMALIJAR" ] || [ -z "$SMALIJAR" ]; then
-        export BAKSMALIJAR="$CM_ROOT"/vendor/cm/build/tools/smali/baksmali.jar
-        export SMALIJAR="$CM_ROOT"/vendor/cm/build/tools/smali/smali.jar
+        export BAKSMALIJAR="$TURBO_ROOT"/vendor/turbo/build/tools/smali/baksmali.jar
+        export SMALIJAR="$TURBO_ROOT"/vendor/turbo/build/tools/smali/smali.jar
     fi
 
     # Extract existing boot.oats to the temp folder
@@ -649,11 +649,11 @@ function oat2dex() {
         FULLY_DEODEXED=1 && return 0 # system is fully deodexed, return
     fi
 
-    if [ ! -f "$CM_TARGET" ]; then
+    if [ ! -f "$Turbo_TARGET" ]; then
         return;
     fi
 
-    if grep "classes.dex" "$CM_TARGET" >/dev/null; then
+    if grep "classes.dex" "$Turbo_TARGET" >/dev/null; then
         return 0 # target apk|jar is already odexed, return
     fi
 
@@ -664,7 +664,7 @@ function oat2dex() {
 
         if get_file "$OAT" "$TMPDIR" "$SRC"; then
             java -jar "$BAKSMALIJAR" -x -o "$TMPDIR/dexout" -c "$BOOTOAT" -d "$TMPDIR" "$TMPDIR/$(basename "$OAT")"
-        elif [[ "$CM_TARGET" =~ .jar$ ]]; then
+        elif [[ "$Turbo_TARGET" =~ .jar$ ]]; then
             # try to extract classes.dex from boot.oat for framework jars
             java -jar "$BAKSMALIJAR" -x -o "$TMPDIR/dexout" -c "$BOOTOAT" -d "$TMPDIR" -e "/$OEM_TARGET" "$BOOTOAT"
         else
@@ -743,7 +743,7 @@ function extract() {
     local HASHLIST=( ${PRODUCT_COPY_FILES_HASHES[@]} ${PRODUCT_PACKAGES_HASHES[@]} )
     local COUNT=${#FILELIST[@]}
     local SRC="$2"
-    local OUTPUT_ROOT="$CM_ROOT"/"$OUTDIR"/proprietary
+    local OUTPUT_ROOT="$TURBO_ROOT"/"$OUTDIR"/proprietary
     local OUTPUT_TMP="$TMPDIR"/"$OUTDIR"/proprietary
 
     if [ "$SRC" = "adb" ]; then
@@ -792,7 +792,7 @@ function extract() {
         local DEST="$OUTPUT_DIR/$FROM"
 
         if [ "$SRC" = "adb" ]; then
-            # Try CM target first
+            # Try Turbo target first
             adb pull "/$TARGET" "$DEST"
             # if file does not exist try OEM target
             if [ "$?" != "0" ]; then
@@ -802,7 +802,7 @@ function extract() {
             # Try OEM target first
             if [ -f "$SRC/$FILE" ]; then
                 cp "$SRC/$FILE" "$DEST"
-            # if file does not exist try CM target
+            # if file does not exist try Turbo target
             elif [ -f "$SRC/$TARGET" ]; then
                 cp "$SRC/$TARGET" "$DEST"
             else
@@ -883,7 +883,7 @@ function extract_firmware() {
     local FILELIST=( ${PRODUCT_COPY_FILES_LIST[@]} )
     local COUNT=${#FILELIST[@]}
     local SRC="$2"
-    local OUTPUT_DIR="$CM_ROOT"/"$OUTDIR"/radio
+    local OUTPUT_DIR="$TURBO_ROOT"/"$OUTDIR"/radio
 
     if [ "$VENDOR_RADIO_STATE" -eq "0" ]; then
         echo "Cleaning firmware output directory ($OUTPUT_DIR).."
