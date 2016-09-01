@@ -3,5 +3,5 @@
 # inherit from Turbo
 #
 
-BOARD_SEPOLICY_DIRS += \
-    vendor/turbo/sepolicy
+#BOARD_SEPOLICY_DIRS += \
+#    vendor/turbo/sepolicy
