@@ -1,3 +1,3 @@
-. "$(gettop)/vendor/turbo/build/envsetup.sh"
+. "$(gettop)/vendor/candy/build/envsetup.sh"
 
-turbo_device_combos
+candy_device_combos

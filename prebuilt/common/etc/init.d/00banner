@@ -2,9 +2,6 @@
 #
 # Print startup info
 #
-L="log -p i -t turbo"
+L="log -p i -t candy"
 
-$L "_____  _     ___   ___   ___  ";
-$L " | |  | | | | |_) | |_) / / \ ";
-$L " |_|  \_\_/ |_| \ |_|_) \_\_/ ";
-$L "Welcome to Android `getprop ro.build.version.release` / Turbo ROM-`getprop ro.turbo.version`";
+$L "Welcome to Android `getprop ro.build.version.release` / CandyRom-`getprop ro.candy.version`";

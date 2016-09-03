@@ -1,11 +1,11 @@
 #
-# Turbo Audio Files
+# candy Audio Files
 #
 
-ALARM_PATH := vendor/turbo/prebuilt/common/media/audio/alarms
-NOTIFICATION_PATH := vendor/turbo/prebuilt/common/media/audio/notifications
-RINGTONE_PATH := vendor/turbo/prebuilt/common/media/audio/ringtones
-UI_PATH := vendor/turbo/prebuilt/common/media/audio/ui
+ALARM_PATH := vendor/candy/prebuilt/common/media/audio/alarms
+NOTIFICATION_PATH := vendor/candy/prebuilt/common/media/audio/notifications
+RINGTONE_PATH := vendor/candy/prebuilt/common/media/audio/ringtones
+UI_PATH := vendor/candy/prebuilt/common/media/audio/ui
 
 # Alarms
 PRODUCT_COPY_FILES += \

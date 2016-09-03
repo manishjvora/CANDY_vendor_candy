@@ -1,7 +1,7 @@
 #!/sbin/sh
 # 
-# /system/addon.d/50-turbo.sh
-# During a Turbo N upgrade, this script backs up /system/etc/hosts,
+# /system/addon.d/50-candy.sh
+# During a candy N upgrade, this script backs up /system/etc/hosts,
 # /system is formatted and reinstalled, then the file is restored.
 #
 

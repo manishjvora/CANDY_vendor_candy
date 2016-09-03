@@ -1,7 +1,7 @@
-$(call inherit-product, vendor/turbo/config/common_mini.mk)
+$(call inherit-product, vendor/candy/config/common_mini.mk)
 
-# Required Turbo packages
+# Required candy packages
 PRODUCT_PACKAGES += \
     LatinIME
 
-$(call inherit-product, vendor/turbo/config/telephony.mk)
+$(call inherit-product, vendor/candy/config/telephony.mk)

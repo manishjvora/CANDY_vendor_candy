@@ -1,12 +1,12 @@
-# Inherit common Turbo stuff
-$(call inherit-product, vendor/turbo/config/common_full.mk)
+# Inherit common candy stuff
+$(call inherit-product, vendor/candy/config/common_full.mk)
 
-# Required Turbo packages
+# Required candy packages
 PRODUCT_PACKAGES += \
     LatinIME
 
-# Include Turbo LatinIME dictionaries
-PRODUCT_PACKAGE_OVERLAYS += vendor/turbo/overlay/dictionaries
+# Include candy LatinIME dictionaries
+PRODUCT_PACKAGE_OVERLAYS += vendor/candy/overlay/dictionaries
 
 # Default notification/alarm sounds
 PRODUCT_PROPERTY_OVERRIDES += \

@@ -1,15 +1,15 @@
-Turbo
+candy
 ===========
 
 Getting Started
 ---------------
 
-To get started with Android/Turbo, you'll need to get
+To get started with Android/candy, you'll need to get
 familiar with [Repo](https://source.android.com/source/using-repo.html) and [Version Control with Git](https://source.android.com/source/version-control.html).
 
-To initialize your local repository using the Turbo trees, use a command like this:
+To initialize your local repository using the candy trees, use a command like this:
 
-    repo init -u git://github.com/Turbo-ROM/manifest.git -b n
+    repo init -u git://github.com/candy-ROM/manifest.git -b n
 
 Then to sync up:
 

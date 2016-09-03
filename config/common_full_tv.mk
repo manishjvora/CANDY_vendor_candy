@@ -1,5 +1,5 @@
-# Inherit common Turbo stuff
-$(call inherit-product, vendor/turbo/config/common_full.mk)
+# Inherit common candy stuff
+$(call inherit-product, vendor/candy/config/common_full.mk)
 
 # Default notification/alarm sounds
 PRODUCT_PROPERTY_OVERRIDES += \

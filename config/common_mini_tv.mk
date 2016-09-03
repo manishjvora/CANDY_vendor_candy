@@ -1,2 +1,2 @@
-# Inherit common Turbo stuff
-$(call inherit-product, vendor/turbo/config/common_mini.mk)
+# Inherit common candy stuff
+$(call inherit-product, vendor/candy/config/common_mini.mk)

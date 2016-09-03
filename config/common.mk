@@ -1,8 +1,8 @@
-PRODUCT_BRAND ?= turbo
+PRODUCT_BRAND ?= candy
 
 # Boot animation
 PRODUCT_COPY_FILES += \
-    vendor/turbo/prebuilt/common/bootanimation/bootanimation.zip:system/media/bootanimation.zip
+    vendor/candy/prebuilt/common/bootanimation/bootanimation.zip:system/media/bootanimation.zip
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
@@ -39,37 +39,37 @@ endif
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
-    vendor/turbo/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
-    vendor/turbo/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/turbo/prebuilt/common/bin/50-turbo.sh:system/addon.d/50-turbo.sh \
-    vendor/turbo/prebuilt/common/bin/blacklist:system/addon.d/blacklist
+    vendor/candy/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+    vendor/candy/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
+    vendor/candy/prebuilt/common/bin/50-candy.sh:system/addon.d/50-candy.sh \
+    vendor/candy/prebuilt/common/bin/blacklist:system/addon.d/blacklist
 
 # Backup Services whitelist
 PRODUCT_COPY_FILES += \
-    vendor/turbo/config/permissions/backup.xml:system/etc/sysconfig/backup.xml
+    vendor/candy/config/permissions/backup.xml:system/etc/sysconfig/backup.xml
 
 # Signature compatibility validation
 PRODUCT_COPY_FILES += \
-    vendor/turbo/prebuilt/common/bin/otasigcheck.sh:install/bin/otasigcheck.sh
+    vendor/candy/prebuilt/common/bin/otasigcheck.sh:install/bin/otasigcheck.sh
 
 # init.d support
 PRODUCT_COPY_FILES += \
-    vendor/turbo/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
-    vendor/turbo/prebuilt/common/bin/sysinit:system/bin/sysinit
+    vendor/candy/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
+    vendor/candy/prebuilt/common/bin/sysinit:system/bin/sysinit
 
 ifneq ($(TARGET_BUILD_VARIANT),user)
 # userinit support
 PRODUCT_COPY_FILES += \
-    vendor/turbo/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
+    vendor/candy/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
 endif
 
-# Turbo-specific init file
+# candy-specific init file
 PRODUCT_COPY_FILES += \
-    vendor/turbo/prebuilt/common/etc/init.local.rc:root/init.turbo.rc
+    vendor/candy/prebuilt/common/etc/init.local.rc:root/init.candy.rc
 
 # Copy over added mimetype supported in libcore.net.MimeUtils
 PRODUCT_COPY_FILES += \
-    vendor/turbo/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
+    vendor/candy/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -79,12 +79,12 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/base/data/keyboards/Vendor_045e_Product_028e.kl:system/usr/keylayout/Vendor_045e_Product_0719.kl
 
-# Required Turbo packages
+# Required candy packages
 PRODUCT_PACKAGES += \
     Development \
     BluetoothExt
 
-# Optional Turbo packages
+# Optional candy packages
 PRODUCT_PACKAGES += \
     libemoji \
     Terminal
@@ -93,7 +93,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     librsjni
 
-# Custom Turbo packages
+# Custom candy packages
 PRODUCT_PACKAGES += \
     Launcher3 \
     ExactCalculator \
@@ -103,7 +103,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Exchange2
 
-# Extra tools in Turbo
+# Extra tools in candy
 PRODUCT_PACKAGES += \
     libsepol \
     mke2fs \
@@ -165,122 +165,122 @@ endif
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.root_access=0
 
-DEVICE_PACKAGE_OVERLAYS += vendor/turbo/overlay/common
+DEVICE_PACKAGE_OVERLAYS += vendor/candy/overlay/common
 
 PRODUCT_VERSION_MAJOR = 6
 PRODUCT_VERSION_MINOR = 0
 PRODUCT_VERSION_MAINTENANCE := 0
 
 ifeq ($(TARGET_VENDOR_SHOW_MAINTENANCE_VERSION),true)
-    TURBO_VERSION_MAINTENANCE := $(PRODUCT_VERSION_MAINTENANCE)
+    CANDY_VERSION_MAINTENANCE := $(PRODUCT_VERSION_MAINTENANCE)
 else
-    TURBO_VERSION_MAINTENANCE := 0
+    CANDY_VERSION_MAINTENANCE := 0
 endif
 
-# Set TURBO_BUILDTYPE from the env RELEASE_TYPE, for jenkins compat
+# Set CANDY_BUILDTYPE from the env RELEASE_TYPE, for jenkins compat
 
-ifndef TURBO_BUILDTYPE
+ifndef CANDY_BUILDTYPE
     ifdef RELEASE_TYPE
-        # Starting with "TURBO_" is optional
-        RELEASE_TYPE := $(shell echo $(RELEASE_TYPE) | sed -e 's|^TURBO_||g')
-        TURBO_BUILDTYPE := $(RELEASE_TYPE)
+        # Starting with "CANDY_" is optional
+        RELEASE_TYPE := $(shell echo $(RELEASE_TYPE) | sed -e 's|^CANDY_||g')
+        CANDY_BUILDTYPE := $(RELEASE_TYPE)
     endif
 endif
 
 # Filter out random types, so it'll reset to UNOFFICIAL
-ifeq ($(filter RELEASE NIGHTLY SNAPSHOT EXPERIMENTAL,$(TURBO_BUILDTYPE)),)
-    TURBO_BUILDTYPE :=
+ifeq ($(filter RELEASE NIGHTLY SNAPSHOT EXPERIMENTAL,$(CANDY_BUILDTYPE)),)
+    CANDY_BUILDTYPE :=
 endif
 
-ifdef TURBO_BUILDTYPE
-    ifneq ($(TURBO_BUILDTYPE), SNAPSHOT)
-        ifdef TURBO_EXTRAVERSION
+ifdef CANDY_BUILDTYPE
+    ifneq ($(CANDY_BUILDTYPE), SNAPSHOT)
+        ifdef CANDY_EXTRAVERSION
             # Force build type to EXPERIMENTAL
-            TURBO_BUILDTYPE := EXPERIMENTAL
-            # Remove leading dash from TURBO_EXTRAVERSION
-            TURBO_EXTRAVERSION := $(shell echo $(TURBO_EXTRAVERSION) | sed 's/-//')
-            # Add leading dash to TURBO_EXTRAVERSION
-            TURBO_EXTRAVERSION := -$(TURBO_EXTRAVERSION)
+            CANDY_BUILDTYPE := EXPERIMENTAL
+            # Remove leading dash from CANDY_EXTRAVERSION
+            CANDY_EXTRAVERSION := $(shell echo $(CANDY_EXTRAVERSION) | sed 's/-//')
+            # Add leading dash to CANDY_EXTRAVERSION
+            CANDY_EXTRAVERSION := -$(CANDY_EXTRAVERSION)
         endif
     else
-        ifndef TURBO_EXTRAVERSION
+        ifndef CANDY_EXTRAVERSION
             # Force build type to EXPERIMENTAL, SNAPSHOT mandates a tag
-            TURBO_BUILDTYPE := EXPERIMENTAL
+            CANDY_BUILDTYPE := EXPERIMENTAL
         else
-            # Remove leading dash from TURBO_EXTRAVERSION
-            TURBO_EXTRAVERSION := $(shell echo $(TURBO_EXTRAVERSION) | sed 's/-//')
-            # Add leading dash to TURBO_EXTRAVERSION
-            TURBO_EXTRAVERSION := -$(TURBO_EXTRAVERSION)
+            # Remove leading dash from CANDY_EXTRAVERSION
+            CANDY_EXTRAVERSION := $(shell echo $(CANDY_EXTRAVERSION) | sed 's/-//')
+            # Add leading dash to CANDY_EXTRAVERSION
+            CANDY_EXTRAVERSION := -$(CANDY_EXTRAVERSION)
         endif
     endif
 else
-    # If TURBO_BUILDTYPE is not defined, set to UNOFFICIAL
-    TURBO_BUILDTYPE := UNOFFICIAL
-    TURBO_EXTRAVERSION :=
+    # If CANDY_BUILDTYPE is not defined, set to UNOFFICIAL
+    CANDY_BUILDTYPE := UNOFFICIAL
+    CANDY_EXTRAVERSION :=
 endif
 
-ifeq ($(TURBO_BUILDTYPE), UNOFFICIAL)
+ifeq ($(CANDY_BUILDTYPE), UNOFFICIAL)
     ifneq ($(TARGET_UNOFFICIAL_BUILD_ID),)
-        TURBO_EXTRAVERSION := -$(TARGET_UNOFFICIAL_BUILD_ID)
+        CANDY_EXTRAVERSION := -$(TARGET_UNOFFICIAL_BUILD_ID)
     endif
 endif
 
-ifeq ($(TURBO_BUILDTYPE), RELEASE)
+ifeq ($(CANDY_BUILDTYPE), RELEASE)
     ifndef TARGET_VENDOR_RELEASE_BUILD_ID
-        TURBO_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(TURBO_BUILD)
+        CANDY_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(CANDY_BUILD)
     else
         ifeq ($(TARGET_BUILD_VARIANT),user)
-            ifeq ($(TURBO_VERSION_MAINTENANCE),0)
-                TURBO_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(TURBO_BUILD)
+            ifeq ($(CANDY_VERSION_MAINTENANCE),0)
+                CANDY_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(CANDY_BUILD)
             else
-                TURBO_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(TURBO_VERSION_MAINTENANCE)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(TURBO_BUILD)
+                CANDY_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(CANDY_VERSION_MAINTENANCE)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(CANDY_BUILD)
             endif
         else
-            TURBO_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(TURBO_BUILD)
+            CANDY_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(CANDY_BUILD)
         endif
     endif
 else
-    ifeq ($(TURBO_VERSION_MAINTENANCE),0)
-        TURBO_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(shell date -u +%Y%m%d)-$(TURBO_BUILDTYPE)$(TURBO_EXTRAVERSION)-$(TURBO_BUILD)
+    ifeq ($(CANDY_VERSION_MAINTENANCE),0)
+        CANDY_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(shell date -u +%Y%m%d)-$(CANDY_BUILDTYPE)$(CANDY_EXTRAVERSION)-$(CANDY_BUILD)
     else
-        TURBO_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(TURBO_VERSION_MAINTENANCE)-$(shell date -u +%Y%m%d)-$(TURBO_BUILDTYPE)$(TURBO_EXTRAVERSION)-$(TURBO_BUILD)
+        CANDY_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(CANDY_VERSION_MAINTENANCE)-$(shell date -u +%Y%m%d)-$(CANDY_BUILDTYPE)$(CANDY_EXTRAVERSION)-$(CANDY_BUILD)
     endif
 endif
 
 PRODUCT_PROPERTY_OVERRIDES += \
-  ro.turbo.version=$(TURBO_VERSION) \
-  ro.turbo.releasetype=$(TURBO_BUILDTYPE) \
-  ro.modversion=$(TURBO_VERSION)
+  ro.candy.version=$(CANDY_VERSION) \
+  ro.candy.releasetype=$(CANDY_BUILDTYPE) \
+  ro.modversion=$(CANDY_VERSION)
 
--include vendor/turbo-priv/keys/keys.mk
+-include vendor/candy-priv/keys/keys.mk
 
-TURBO_DISPLAY_VERSION := $(TURBO_VERSION)
+CANDY_DISPLAY_VERSION := $(CANDY_VERSION)
 
 ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),)
 ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),build/target/product/security/testkey)
-  ifneq ($(TURBO_BUILDTYPE), UNOFFICIAL)
+  ifneq ($(CANDY_BUILDTYPE), UNOFFICIAL)
     ifndef TARGET_VENDOR_RELEASE_BUILD_ID
-      ifneq ($(TURBO_EXTRAVERSION),)
-        # Remove leading dash from TURBO_EXTRAVERSION
-        TURBO_EXTRAVERSION := $(shell echo $(TURBO_EXTRAVERSION) | sed 's/-//')
-        TARGET_VENDOR_RELEASE_BUILD_ID := $(TURBO_EXTRAVERSION)
+      ifneq ($(CANDY_EXTRAVERSION),)
+        # Remove leading dash from CANDY_EXTRAVERSION
+        CANDY_EXTRAVERSION := $(shell echo $(CANDY_EXTRAVERSION) | sed 's/-//')
+        TARGET_VENDOR_RELEASE_BUILD_ID := $(CANDY_EXTRAVERSION)
       else
         TARGET_VENDOR_RELEASE_BUILD_ID := $(shell date -u +%Y%m%d)
       endif
     else
       TARGET_VENDOR_RELEASE_BUILD_ID := $(TARGET_VENDOR_RELEASE_BUILD_ID)
     endif
-    ifeq ($(TURBO_VERSION_MAINTENANCE),0)
-        TURBO_DISPLAY_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(TURBO_BUILD)
+    ifeq ($(CANDY_VERSION_MAINTENANCE),0)
+        CANDY_DISPLAY_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(CANDY_BUILD)
     else
-        TURBO_DISPLAY_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(TURBO_VERSION_MAINTENANCE)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(TURBO_BUILD)
+        CANDY_DISPLAY_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(CANDY_VERSION_MAINTENANCE)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(CANDY_BUILD)
     endif
 endif
 endif
 endif
 
 PRODUCT_PROPERTY_OVERRIDES += \
-  ro.turbo.display.version=$(TURBO_DISPLAY_VERSION)
+  ro.candy.display.version=$(CANDY_DISPLAY_VERSION)
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
 

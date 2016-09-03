@@ -1,12 +1,12 @@
-# Inherit common Turbo stuff
-$(call inherit-product, vendor/turbo/config/common.mk)
+# Inherit common candy stuff
+$(call inherit-product, vendor/candy/config/common.mk)
 
 PRODUCT_SIZE := full
 
-# Include Turbo audio files
-include vendor/turbo/config/turbo_audio.mk
+# Include candy audio files
+include vendor/candy/config/candy_audio.mk
 
-# Optional Turbo packages
+# Optional candy packages
 PRODUCT_PACKAGES += \
     Galaxy4 \
     HoloSpiralWallpaper \
@@ -19,7 +19,7 @@ PRODUCT_PACKAGES += \
     SoundRecorder \
     PhotoPhase
 
-# Extra tools in Turbo
+# Extra tools in candy
 PRODUCT_PACKAGES += \
     7z \
     lib7z \
