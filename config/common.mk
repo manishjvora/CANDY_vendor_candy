@@ -77,6 +77,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     vendor/candy/prebuilt/common/etc/v4a.zip:system/addon.d/v4a.zip
 
+# Superuser
+PRODUCT_PACKAGES += \
+Superuser
+
+PRODUCT_COPY_FILES += \
+    vendor/candy/prebuilt/common/superuser/su:root/sbin/su \
+    vendor/candy/prebuilt/common/superuser/init.superuser.rc:root/init.superuser.rc
 # Required packages
 PRODUCT_PACKAGES += \
     Development \
