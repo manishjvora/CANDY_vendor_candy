@@ -200,3 +200,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 EXTENDED_POST_PROCESS_PROPS := vendor/candy/tools/candy_process_props.py
 
+# include definitions for SDCLANG
+include device/qcom/common/sdclang/sdclang.mk
