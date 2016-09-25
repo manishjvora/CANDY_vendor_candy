@@ -71,6 +71,12 @@ PRODUCT_COPY_FILES += \
     vendor/candy/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit \
     vendor/candy/prebuilt/common/bin/sysinit:system/bin/sysinit
 
+# Viper4Android
+PRODUCT_PACKAGES += \
+    ViPER4Android
+PRODUCT_COPY_FILES += \
+    vendor/candy/prebuilt/common/etc/v4a.zip:system/addon.d/v4a.zip
+
 # Required packages
 PRODUCT_PACKAGES += \
     Development \
