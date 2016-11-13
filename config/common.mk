@@ -92,6 +92,7 @@ PRODUCT_PACKAGES += \
 # CM packages
 PRODUCT_PACKAGES += \
     AudioFX \
+    Gello \
     SoundRecorder
 
 # CM Hardware Abstraction Framework
