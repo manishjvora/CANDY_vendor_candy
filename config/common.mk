@@ -75,9 +75,14 @@ PRODUCT_COPY_FILES += \
     vendor/candy/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit \
     vendor/candy/prebuilt/common/bin/sysinit:system/bin/sysinit
 
-# Masquerade
+# Theme Shit
 PRODUCT_PACKAGES += \
-    masquerade
+    masquerade \
+    Substratum
+
+# disable until recreate is added to c7.1
+# PRODUCT_PROPERTY_OVERRIDES += \
+#     ro.substratum.recreate=true
 
 # Viper4Android
 PRODUCT_PACKAGES += \
@@ -92,6 +97,7 @@ Superuser
 PRODUCT_COPY_FILES += \
     vendor/candy/prebuilt/common/superuser/su:root/sbin/su \
     vendor/candy/prebuilt/common/superuser/init.superuser.rc:root/init.superuser.rc
+
 # Required packages
 PRODUCT_PACKAGES += \
     Development \
