@@ -75,6 +75,10 @@ PRODUCT_COPY_FILES += \
     vendor/candy/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit \
     vendor/candy/prebuilt/common/bin/sysinit:system/bin/sysinit
 
+# Masquerade
+PRODUCT_PACKAGES += \
+    masquerade
+
 # Viper4Android
 PRODUCT_PACKAGES += \
     ViPER4Android
