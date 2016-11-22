@@ -112,7 +112,6 @@ PRODUCT_PACKAGES += \
 
 # CM packages
 PRODUCT_PACKAGES += \
-    AudioFX \
     Gello \
     SoundRecorder
 
@@ -126,7 +125,8 @@ PRODUCT_PACKAGES += \
     Launcher3 \
     Email \
     LatinIME \
-    BluetoothExt
+    BluetoothExt \
+    SnapMusic
 
 #    SlimFileManager removed until updated
 
