@@ -16,5 +16,6 @@ LOCAL_MODULE := CandyBootAnimation
 
 BOOTANIMATION := $(shell $(ANDROID_BUILD_TOP)/vendor/candy/bootanimation/generate-bootanimation.sh \
     $(TARGET_SCREEN_WIDTH) \
+    $(TARGET_SCREEN_HEIGHT) \
     $(TARGET_BOOTANIMATION_HALF_RES))
 
