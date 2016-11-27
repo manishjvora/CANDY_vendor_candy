@@ -47,7 +47,7 @@ PRODUCT_COPY_FILES += \
 
 # Candy backuptool
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.candybackuptool.version=c7
+    ro.candybackuptool.version=7.1
 
 # Signature compatibility validation
 PRODUCT_COPY_FILES += \
