@@ -4,7 +4,7 @@ CWD=`pwd`
 BASEW=$1 # Device Width
 BASEH=$2 # Device Height
 HALF_RES=$3 # Half the size of the device resolution (true or false)
-PORTW=1600 # Original bootanimation image based on unmodified width
+PORTW=1400 # Original bootanimation image based on unmodified width
 PORTH=2560 # Original bootanimation image based on unmodified height
 
 if [ -f "/usr/bin/convert" ]; then
@@ -17,7 +17,7 @@ if [ -f "/usr/bin/convert" ]; then
     if [ -d "$ANDROID_PRODUCT_OUT"/obj/BOOTANIMATION/bootanimation/part0 ]; then
       rm -rf "$ANDROID_PRODUCT_OUT"/obj/BOOTANIMATION/bootanimation/part*
     else
-      mkdir -p "$ANDROID_PRODUCT_OUT"/obj/BOOTANIMATION/bootanimation/part{0..3}
+      mkdir -p "$ANDROID_PRODUCT_OUT"/obj/BOOTANIMATION/bootanimation/part{0..2}
     fi
 
     tar xvfp "$CWD/vendor/candy/bootanimation/bootanimation.tar" -C "$ANDROID_PRODUCT_OUT/obj/BOOTANIMATION/bootanimation/$TAR_FILENAME"
@@ -49,7 +49,7 @@ if [ -f "/usr/bin/convert" ]; then
     done < <(find "$ANDROID_PRODUCT_OUT"/obj/BOOTANIMATION/bootanimation -type f -iname "*.png" -o -iname "*.jpg")
 
     # create desc.txt
-    echo "$FINALW" "$FINALH" 30 > "$ANDROID_PRODUCT_OUT/obj/BOOTANIMATION/bootanimation/desc.txt"
+    echo "$FINALW" "$FINALH" 60 > "$ANDROID_PRODUCT_OUT/obj/BOOTANIMATION/bootanimation/desc.txt"
     cat "$CWD/vendor/candy/bootanimation/desc.txt" >> "$ANDROID_PRODUCT_OUT/obj/BOOTANIMATION/bootanimation/desc.txt"
 
     # create bootanimation.zip
