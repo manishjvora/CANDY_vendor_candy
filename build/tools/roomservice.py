@@ -20,6 +20,7 @@ import json
 import sys
 import os
 import glob
+import fnmatch
 
 try:
   # For python3
@@ -46,6 +47,24 @@ args = parser.parse_args()
 depsonly = args.depsonly
 
 ran_checkdeps_on = []
+
+# See if they are using a personal local manifest
+# If any xml file is found and not named, roomservice.xml, and has read permissions then abort
+# This indicates that they do not use their deps file in their device tree
+# If they want to use their deps file, they must remove their current xml file
+crosscheck_manifest = '.repo/local_manifests/roomservice.xml'
+manifest_path = '.repo/local_manifests'
+for filename in os.listdir('.repo/local_manifests'):
+    if fnmatch.fnmatch(filename, '*.xml'):
+        absolute_manifest = os.path.join(manifest_path, filename)
+        if (absolute_manifest != crosscheck_manifest) and (os.access(absolute_manifest, os.R_OK)):
+            print("")
+            print("**************************************************************************")
+            print("You are using a personal local manifest not named, roomservice.xml.")
+            print("Your dependency file in your device tree will be ignored as a result.")
+            print("Remove your local manifest if you wish to use your dependency file instead.")
+            print("**************************************************************************")
+            sys.exit()
 
 local_manifests = r'.repo/local_manifests'
 if not os.path.exists(local_manifests): os.makedirs(local_manifests)
