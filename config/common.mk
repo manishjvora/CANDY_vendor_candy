@@ -208,3 +208,6 @@ ifeq ($(HOST_OS),linux)
         include vendor/candy/sdclang/sdclang.mk
     endif
 endif
+
+# Google sounds
+include vendor/candy/google/GoogleAudio.mk
