@@ -78,6 +78,7 @@ PRODUCT_PACKAGES += \
     CandyBootAnimation \
     CandyCane \
     CandyOTA \
+    CandyWrappers \
     Development \
     LatinIME \
     Lawnchair \
