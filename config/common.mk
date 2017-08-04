@@ -80,6 +80,7 @@ PRODUCT_PACKAGES += \
     CandyOTA \
     Development \
     LatinIME \
+    Lawnchair \
     LiveWallpapersPicker \
     OmniClockOSS \
     OmniJaws \
@@ -87,7 +88,6 @@ PRODUCT_PACKAGES += \
     org.dirtyunicorns.utils \
     PhaseBeam \
     PhotoTable \
-    SlimLauncher \
     SlimRecents \
     SnapdragonGallery \
     SpareParts \
