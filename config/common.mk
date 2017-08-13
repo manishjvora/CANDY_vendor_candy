@@ -201,7 +201,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 EXTENDED_POST_PROCESS_PROPS := vendor/candy/tools/candy_process_props.py
 
-ifeq ($(filter candy_marlin,$(TARGET_PRODUCT)),)
+ifneq ($(filter candy_marlin,$(TARGET_PRODUCT)),)
 -include vendor/candy/opengapps.mk
 endif
 
