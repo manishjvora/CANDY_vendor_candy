@@ -85,6 +85,7 @@ PRODUCT_PACKAGES += \
     LiveWallpapersPicker \
     OmniClockOSS \
     OmniJaws \
+    OmniStyle \
     OmniSwitch \
     org.dirtyunicorns.utils \
     PhaseBeam \
