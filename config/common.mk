@@ -219,3 +219,10 @@ endif
 
 # Google sounds
 include vendor/candy/google/GoogleAudio.mk
+
+# Themes
+PRODUCT_PACKAGES += \
+    PixelTheme \
+    Stock
+
+
