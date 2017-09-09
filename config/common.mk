@@ -151,10 +151,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_PACKAGE_OVERLAYS += vendor/candy/overlay/common
 
-# Storage manager
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.storage_manager.enabled=true
-
 # Default sounds
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.alarm_alert=Helium.ogg \
