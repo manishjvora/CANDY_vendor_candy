@@ -9,6 +9,7 @@
 # cyanogen - shade@chemlab.org
 # ChrisSoyars - me@ctso.me
 # Nougat fixes: Joe Maples - frap129@gmail.com
+# Revamped: axxx007xxxz and Stephen M. (SHM)
 
 set -e
 BASE=`pwd`
