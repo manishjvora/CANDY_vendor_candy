@@ -15,8 +15,8 @@ BASE=`pwd`
 
 . $ANDROID_BUILD_TOP/vendor/candy/tools/colors
 
-if [ "$(which pngquant)" != "" ]; then
-    if [ "$(which optipng)" != "" ]; then
+if [ "$(which pngquant 2>/dev/null)" != "" ]; then
+    if [ "$(which optipng 2>/dev/null)" != "" ]; then
         optimize_png () {
             pngquant --speed 1 --force --ext .png $1 1> /dev/null 2> /dev/null;
             optipng -o7 $1 1> /dev/null 2> /dev/null;
@@ -27,7 +27,7 @@ if [ "$(which pngquant)" != "" ]; then
         }
     fi
 else
-    if [ "$(which optipng)" != "" ]; then
+    if [ "$(which optipng 2>/dev/null)" != "" ]; then
         optimize_png () {
             optipng -o7 $1 1> /dev/null 2> /dev/null;
         }
