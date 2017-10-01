@@ -2,9 +2,7 @@
 
 . $ANDROID_BUILD_TOP/vendor/candy/tools/colors
 
-CRUSHER=$ANDROID_BUILD_TOP/vendor/candy/tools/crusher
-
 # Optimize PNG resources in APKs
-$CRUSHER $1
+$ANDROID_BUILD_TOP/vendor/candy/tools/crusher $1
 
 exit 0
