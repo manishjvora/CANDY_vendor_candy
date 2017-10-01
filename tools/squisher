@@ -14,25 +14,25 @@ set -e
 . $ANDROID_BUILD_TOP/vendor/candy/tools/colors
 
 if [ "$(which pngquant 2>/dev/null)" != "" ]; then
-    if [ "$(which optipng 2>/dev/null)" != "" ]; then
-        optimize_png () {
-            pngquant --speed 1 --force --ext .png $1 &>/dev/null
-            optipng -o7 $1 &>/dev/null
-        }
-    else
-        optimize_png () {
-            pngquant --speed 1 --force --ext .png $1 &>/dev/null
-        }
-    fi
+	if [ "$(which optipng 2>/dev/null)" != "" ]; then
+		optimize_png () {
+			pngquant --speed 1 --force --ext .png $1 &>/dev/null
+			optipng -o7 $1 &>/dev/null
+		}
+	else
+		optimize_png () {
+			pngquant --speed 1 --force --ext .png $1 &>/dev/null
+		}
+	fi
 else
-    if [ "$(which optipng 2>/dev/null)" != "" ]; then
-        optimize_png () {
-            optipng -o7 $1 &>/dev/null
-        }
-    else
-        echo $CL_RED"Please install pngquant or optipng (or both, for improved crushing)"$CL_RST
-        exit 1
-    fi
+	if [ "$(which optipng 2>/dev/null)" != "" ]; then
+		optimize_png () {
+			optipng -o7 $1 &>/dev/null
+		}
+	else
+		echo $CL_RED"Please install pngquant or optipng (or both, for improved crushing)"$CL_RST
+		exit 1
+	fi
 fi
 
 if [ -e "$1" ]; then
