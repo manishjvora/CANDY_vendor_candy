@@ -9,7 +9,6 @@
 # Revamped: axxx007xxxz and Stephen M. (SHM)
 
 set -e
-BASE=`pwd`
 
 if [ "$(which pngquant 2>/dev/null)" != "" ]; then
     if [ "$(which optipng 2>/dev/null)" != "" ]; then
