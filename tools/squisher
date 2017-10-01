@@ -2,21 +2,9 @@
 
 . $ANDROID_BUILD_TOP/vendor/candy/tools/colors
 
-OUT_TARGET_HOST=`uname -s`
-if [ x"$OUT_TARGET_HOST" = x"Linux" ]; then
-   OUT_TARGET_HOST=linux-x86
-   XARGS="xargs --max-args=1 --max-procs `grep -c "processor" /proc/cpuinfo`"
-elif [ x"$OUT_TARGET_HOST" = x"Darwin" ]; then
-   OUT_TARGET_HOST=darwin-x86
-   XARGS="xargs -n 1 -P `sysctl hw.ncpu | awk '{print $2}'`"
-else
-   echo -e ${CL_RED}"ERROR: unknown/unsupported host OS!"${CL_RST}
-   exit 1
-fi
-
 CRUSHER=$ANDROID_BUILD_TOP/vendor/candy/tools/crusher
 
 # Optimize PNG resources in APKs
-$XARGS $CRUSHER $1
+$CRUSHER $1
 
 exit 0
