@@ -1,22 +1,19 @@
-#Version of the ROM
-CARBON_CODENAME := CONFIDENTIAL
-CARBON_REVISION := CR-6.0
+# Version of the ROM
+CANDY_CODENAME := O
+CANDY_REVISION := V1.0
 
-ifndef CARBON_BUILDTYPE
-  CARBON_BUILDTYPE := UNOFFICIAL
+ifndef CANDY_BUILDTYPE
+  CANDY_BUILDTYPE := UNOFFICIAL
 endif
 
 TARGET_PRODUCT_SHORT := $(TARGET_PRODUCT)
-TARGET_PRODUCT_SHORT := $(subst carbon_,,$(TARGET_PRODUCT_SHORT))
+TARGET_PRODUCT_SHORT := $(subst candy_,,$(TARGET_PRODUCT_SHORT))
 
-CARBON_VERSION := $(CARBON_REVISION)-$(CARBON_CODENAME)-$(CARBON_BUILDTYPE)-$(TARGET_PRODUCT_SHORT)-$(shell date -u +%Y%m%d-%H%M)
+CANDY_VERSION := $(CANDY_REVISION)-$(CANDY_CODENAME)-$(CANDY_BUILDTYPE)-$(TARGET_PRODUCT_SHORT)-$(shell date -u +%Y%m%d-%H%M)
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_DISPLAY_ID="$(BUILD_ID)-$(shell whoami)@$(shell hostname)"
 
 # Apply it to build.prop
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.modversion=CarbonROM-$(CARBON_VERSION) \
-    ro.carbon.version=$(CARBON_VERSION) \
-    ro.romstats.url=https://stats.carbonrom.org \
-    ro.romstats.name=CarbonROM \
-    ro.romstats.version=$(CARBON_VERSION)
+    ro.modversion=Candy-$(CANDY_VERSION) \
+    ro.candy.version=$(CANDY_VERSION) \
