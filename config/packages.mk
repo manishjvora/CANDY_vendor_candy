@@ -18,6 +18,7 @@ PRODUCT_PACKAGES += \
 
 # Additional apps
 PRODUCT_PACKAGES += \
+    CandyWrappers \
     Lawnchair \
     Fennec \
     ThemeInterfacer \
