@@ -23,7 +23,6 @@ PRODUCT_PACKAGES += \
     Fennec \
     ThemeInterfacer \
     OmniStyle \
-    VanillaMusic \
     Turbo
 
 # Custom off-mode charger
