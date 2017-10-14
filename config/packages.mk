@@ -19,7 +19,7 @@ PRODUCT_PACKAGES += \
 # Additional apps
 PRODUCT_PACKAGES += \
     Launcher3 \
-    Quarks \
+    Fennec \
     Substratum \
     ThemeInterfacer \
     OmniStyle \
