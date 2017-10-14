@@ -20,7 +20,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Lawnchair \
     Fennec \
-    Substratum \
     ThemeInterfacer \
     OmniStyle \
     VanillaMusic \
