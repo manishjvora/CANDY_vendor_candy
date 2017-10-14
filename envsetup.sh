@@ -1,2 +1,0 @@
-add_lunch_combo candy_oneplus2-user
-add_lunch_combo candy_oneplus2-userdebug
