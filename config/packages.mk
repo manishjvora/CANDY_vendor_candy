@@ -18,7 +18,7 @@ PRODUCT_PACKAGES += \
 
 # Additional apps
 PRODUCT_PACKAGES += \
-    Launcher3 \
+    Lawnchair \
     Fennec \
     Substratum \
     ThemeInterfacer \
