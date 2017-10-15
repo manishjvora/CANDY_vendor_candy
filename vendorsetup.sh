@@ -6,6 +6,8 @@ add_lunch_combo candy_aries-user
 add_lunch_combo candy_aries-userdebug
 add_lunch_combo candy_armani-user
 add_lunch_combo candy_armani-userdebug
+add_lunch_combo candy_axon7-user
+add_lunch_combo candy_axon7-userdebug
 add_lunch_combo candy_bacon-user
 add_lunch_combo candy_bacon-userdebug
 add_lunch_combo candy_bullhead-user
