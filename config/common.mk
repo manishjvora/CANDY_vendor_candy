@@ -49,7 +49,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.android.wifi-watchlist=GoogleGuest \
     ro.setupwizard.enterprise_mode=1 \
     persist.sys.root_access=1 \
-    ro.opa.eligible_device=true
+    ro.opa.eligible_device=true \
+    ro.config.media_vol_steps=25 \
+    ro.config.vc_call_vol_steps=10
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.selinux=1
