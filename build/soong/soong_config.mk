@@ -1,4 +1,4 @@
-gzosp_soong:
+candy_soong:
 	$(hide) mkdir -p $(dir $@)
 	$(hide) (\
 	echo '{'; \
