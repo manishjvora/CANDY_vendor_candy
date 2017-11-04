@@ -92,6 +92,7 @@ PRODUCT_PACKAGES += \
     CandyBootAnimation \
     CandyWrappers \
     LatinIME \
+    Lawnchair \
     BluetoothExt
 #    ThemeInterfacer \
 #    Eleven \
