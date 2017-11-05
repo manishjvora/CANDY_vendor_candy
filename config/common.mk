@@ -92,7 +92,7 @@ PRODUCT_PACKAGES += \
     CandyBootAnimation \
     CandyWrappers \
     LatinIME \
-    Lawnchair \
+    Nova \
     BluetoothExt
 #    ThemeInterfacer \
 #    Eleven \
