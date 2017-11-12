@@ -93,15 +93,9 @@ PRODUCT_PACKAGES += \
     CandyWrappers \
     LatinIME \
     Nova \
-    BluetoothExt
-#    ThemeInterfacer \
-#    Eleven \
-#    OmniSwitch \
-#    OmniJaws \
-#    OmniStyle \
-#    Turbo \
-#    Nova \
-#    NovaGoogleCompanion
+    BluetoothExt \
+    Turbo
+
 
 # Extra tools
 PRODUCT_PACKAGES += \
