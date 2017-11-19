@@ -95,7 +95,8 @@ PRODUCT_PACKAGES += \
     Nova \
     BluetoothExt \
     Turbo \
-    OmniJaws
+    OmniJaws \
+    OmniStyle
 
 
 # Extra tools
