@@ -94,7 +94,8 @@ PRODUCT_PACKAGES += \
     LatinIME \
     Nova \
     BluetoothExt \
-    Turbo
+    Turbo \
+    OmniJaws
 
 
 # Extra tools
