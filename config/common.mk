@@ -131,6 +131,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     AudioFX
 
+# Candy OTA
+include vendor/candy/config/ota.mk
+
 # Extra Optional packages
 PRODUCT_PACKAGES += \
     Calculator \
