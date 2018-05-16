@@ -241,7 +241,6 @@ CANDY_VERSION := Candy-$(CANDY_BUILD)-$(PRODUCT_VERSION)-$(CANDY_BUILD_TYPE)$(CA
 
 PRODUCT_GENERIC_PROPERTIES += \
     BUILD_DISPLAY_ID=$(BUILD_ID) \
-    candy.ota.version=$(PRODUCT_VERSION).$(CANDY_POSTFIX) \
     ro.candy.version=$(CANDY_VERSION) \
     ro.modversion=$(CANDY_VERSION) \
     ro.candy.buildtype=$(CANDY_BUILD_TYPE)

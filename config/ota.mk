@@ -15,10 +15,10 @@
 ifneq ($(filter candy_mido,$(TARGET_PRODUCT)),)
 
 PRODUCT_PACKAGES += \
-    candyOTA
+    CandyOTA
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.candy.device=$(PRODUCT_DEVICE) \
-    ro.candy.ota.version=Candy-OFFICIAL-$(PRODUCT_DEVICE)-$(shell date +"%Y%m%d")
+    ro.candy.ota.version=Candy-8.1-OFFICIAL-$(PRODUCT_DEVICE)-$(shell date +"%Y%m%d")
 
 endif

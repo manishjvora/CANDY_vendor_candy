@@ -9,3 +9,7 @@ PRODUCT_PACKAGES += \
 # SMS
 PRODUCT_PACKAGES += \
 	messaging
+
+# Candy OTA
+PRODUCT_PACKAGES += \
+    CandyOTA
