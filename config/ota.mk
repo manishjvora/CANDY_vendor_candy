@@ -12,13 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ifneq ($(filter candy_mido,$(TARGET_PRODUCT)),)
+ifneq ($(filter (candy_cheeseburger candy_dumpling candy_mido),$(TARGET_PRODUCT)),)
 
 PRODUCT_PACKAGES += \
     CandyOTA
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.candy.device=$(PRODUCT_DEVICE) \
-    ro.candy.ota.version=Candy-8.1-OFFICIAL-$(PRODUCT_DEVICE)-$(shell date +"%Y%m%d")
+    ro.candy.device=$(TARGET_DEVICE) \
+    ro.candy.ota.version=Candy-$(TARGET_DEVICE)-8.1-OFFICIAL-$(shell date +"%Y%m%d")
 
 endif
