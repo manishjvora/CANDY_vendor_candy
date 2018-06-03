@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ifneq ($(filter (candy_cheeseburger candy_dumpling candy_mido),$(TARGET_PRODUCT)),)
+ifneq ($(filter (candy_bacon candy_cheeseburger candy_dumpling candy_mido candy_oneplus3),$(TARGET_PRODUCT)),)
 
 PRODUCT_PACKAGES += \
     CandyOTA
