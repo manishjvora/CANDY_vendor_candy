@@ -220,6 +220,11 @@ PRODUCT_PACKAGES += \
     YellowAccent \
     WhiteAccent
 
+# Analog clocks
+PRODUCT_PACKAGES += \
+    AnalogDeadpool \
+    AnalogDu
+
 PRODUCT_PACKAGE_OVERLAYS += vendor/candy/overlay/common
 
 # Versioning System
