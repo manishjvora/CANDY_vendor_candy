@@ -24,7 +24,8 @@
     <!-- Security dialog -->
     <string name="aosp_security_bulletin_url">https://source.android.com/security/bulletin/2018-06-01</string>
 
+    <!-- Analog clocks -->
     <string name="lockscreen_clock_selection_analog_deadpool">Analog (deadpool)</string>
-    <string name="lockscreen_clock_selection_analog_du">Analog DU-style</string>
+    <string name="lockscreen_clock_selection_analog_deepnight">Analog (deep night)</string>
 
 </resources>

@@ -223,7 +223,7 @@ PRODUCT_PACKAGES += \
 # Analog clocks
 PRODUCT_PACKAGES += \
     AnalogDeadpool \
-    AnalogDu
+    AnalogDeepNight
 
 PRODUCT_PACKAGE_OVERLAYS += vendor/candy/overlay/common
 
