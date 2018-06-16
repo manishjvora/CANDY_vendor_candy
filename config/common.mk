@@ -120,7 +120,7 @@ PRODUCT_PACKAGES += \
 
 # Prebuilt packages
 PRODUCT_PACKAGES += \
-    PixelLauncher
+    nexuslauncher
 
 # Include explicitly to work around GMS issues
 PRODUCT_PACKAGES += \
