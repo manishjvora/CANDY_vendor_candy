@@ -179,6 +179,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # easy way to extend to add more packages
 -include vendor/extra/product.mk
 
+# OmniStyle
+PRODUCT_PACKAGES += \
+    OmniStyle
+
 # Packages
 PRODUCT_PACKAGES += \
     GBoardDarkTheme \
